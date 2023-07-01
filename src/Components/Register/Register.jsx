@@ -1,14 +1,15 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import library from '../../Assets/Image/libr.jpg'
-import axios from 'axios'
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../Context/AuthenticationContext';
+import axios from 'axios';
 export default function Register() {
     let [errors,setErrors]=useState([]);
     let [statusError,setStatusError]=useState('');
+
     let navigate=useNavigate();
-  
     let schema=Yup.object(
       {
         userName: Yup.string().required("name is required").min(3,"minimum characters is 3").max(15,"maximum characters is 15"),
@@ -29,19 +30,19 @@ export default function Register() {
         validationSchema:schema
       });
   
-    async function sendRegisterData(values) {
-  
-      let {data}= await axios.post('https://king-prawn-app-3mgea.ondigitalocean.app/auth/signup',values).catch((err)=>{
-         setStatusError(err.response.data.message);
-      })
-      if (data.message==="Done") {
-        setStatusError('');
-        setErrors([]);
-        navigate('/login')
-      } else {
-         setErrors(data.err[0]);
+      async function sendRegisterData(values) {
+
+        let {data}= await axios.post('https://king-prawn-app-3mgea.ondigitalocean.app/auth/signup',values).catch((err)=>{
+           setStatusError(err.response.data.message);
+        })
+        if (data.message==="Done") {
+          setStatusError('');
+          setErrors([]);
+          navigate('/login')
+        } else {
+           setErrors(data.err[0]);
+        }
       }
-    }
     return (
         <>
             <div className="container row">

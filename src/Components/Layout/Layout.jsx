@@ -1,21 +1,23 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 import Navbar from '../Navbar/Navbar'
+import { AuthContext } from '../Context/AuthenticationContext'
+import AboutBook from '../AboutBook/AboutBook';
+import { BookContext } from '../Context/DataContext';
 
-export default function Layout({user,setUser}) {
-    let navigate=useNavigate()
-    function logout() {
-    setUser(null);
-    localStorage.removeItem("userToken");
-    navigate('/login')
-    }
+export default function Layout() {
+  let {user,setUser}=useContext(AuthContext);
+  let {setAboutBook}=useContext(BookContext);
+  let {aboutBook,nullAbout}=useContext(BookContext);
+  useEffect(()=>{
+    localStorage.setItem('hi','hi');
+  })
   return (
     <>
-     <Navbar user={user} logout={logout}/>
+     <Navbar />
     <Outlet>
       
     </Outlet>
-    
     </>
   )
 }

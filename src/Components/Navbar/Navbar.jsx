@@ -1,40 +1,48 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { AuthContext } from '../Context/AuthenticationContext'
+import Sidebar from '../Sidebar/Sidebar';
+import { List, MagnifyingGlass } from "phosphor-react";
+import '../Navbar/NavBarStyle.css'
+import { BookContext } from '../Context/DataContext';
 
-export default function Navbar({user,logout}) {
+export default function Navbar(props) {
+  let {user}=useContext(AuthContext);
+  let {logoutContext}=useContext(AuthContext);
+  let {setType}=useContext(BookContext);
+  const {getBookContext}=useContext(BookContext);
+let navigate=useNavigate();
+
   return (
-    <><nav className="navbar navbar-expand-lg bg-primary">
-  <div className="container-fluid">
-    <a className="navbar-brand" href="#">Online Library</a>
-    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span className="navbar-toggler-icon" />
-    </button>
-    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-        <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-     </ul>
-      <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-      {
-            !user ?
-            <>
-          <li className="nav-item">
-            <Link className="nav-link active " aria-current="page" to="login">Login</Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link active " aria-current="page" to="register">Register</Link>
-          </li>
-            
-            </>:
-          <li className="nav-item">
-            <button className="btn btn-danger" aria-current="page" onClick={logout}>Logout</button>
-          </li>
+    <>
+<div className="header container">
 
-          }
-     </ul>
+  <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+  <List size={24} weight="bold" />
+  </button>
+      <div className="types">
+        <span className="type" onClick={() =>{
+          setType('all')
+          getBookContext('all')  
+          navigate('/bookslibrary')} }> All   </span>
+
+        <span className="type" onClick={() =>{
+          setType('books')
+          getBookContext('books')
+          navigate('/bookslibrary')}}  >
+          Books
+        </span>
+        <span className="type" onClick={() =>{ 
+          setType('magazines')
+          getBookContext('magazines')
+          navigate('/bookslibrary')}}>
+          Magazines
+        </span>
+      </div>
+     
     </div>
-  </div>
-</nav>
+
+
+<Sidebar/>
 </>  )
 }

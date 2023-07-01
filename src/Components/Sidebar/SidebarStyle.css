@@ -1,0 +1,40 @@
+.sidebar{
+
+    background-color: rgb(14, 12, 34);
+}
+
+.sidebar .icon{ 
+    display: flex;
+    margin: 5px 0px;
+    border-radius: 5vmin ;
+    width: 21vmin;
+    height: 5vmin;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0px 10px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.icon span{ 
+    margin-left: 6px;
+    color:#ececf3;
+
+}
+
+.hrList{
+    width: 20vmin;
+    height: 1px;
+    background-color: #4072be;
+    margin: 23px 0px;
+}
+
+.icon:hover span{
+    color: rgb(247, 255, 240);
+}
+
+
+.icon:hover{
+    background-color: #4A80f0;
+}
