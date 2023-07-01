@@ -12,7 +12,7 @@ export default function Login() {
   let navigate = useNavigate();
 
   let [statusError,setStatusError]=useState('');
-  // let {saveCurrentUser}= useContext(AuthContext);
+   let {saveCurrentUser}= useContext(AuthContext);
 
   let schema = Yup.object(
     {
@@ -41,7 +41,7 @@ export default function Login() {
         setErrors([]);
         setStatusError([]);
         localStorage.setItem("userToken",data.access_token);
-        // saveCurrentUser();
+        saveCurrentUser();
         navigate('/');
     }
     }

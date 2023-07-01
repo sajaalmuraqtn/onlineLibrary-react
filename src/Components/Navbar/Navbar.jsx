@@ -8,12 +8,14 @@ import { BookContext } from '../Context/DataContext';
 
 export default function Navbar(props) {
   let {user}=useContext(AuthContext);
-  let {logoutContext}=useContext(AuthContext);
   let {setType}=useContext(BookContext);
   const {getBookContext}=useContext(BookContext);
 let navigate=useNavigate();
 
   return (
+    <>
+    {
+       user!==null?
     <>
 <div className="header container">
 
@@ -44,5 +46,9 @@ let navigate=useNavigate();
 
 
 <Sidebar/>
+
+</>
+:''
+}
 </>  )
 }

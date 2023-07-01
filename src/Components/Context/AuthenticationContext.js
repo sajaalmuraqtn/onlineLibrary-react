@@ -1,12 +1,10 @@
-import React,{ createContext, useState } from "react";
-import jwt from 'jwt-decode';
+import jwtDecode from "jwt-decode";
+import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+export const AuthContext=createContext([]);
 
-export const AuthContext = createContext([]);
-
-export function AuthenticationContextProvider({ children }) {
-    
+export function AuthenticationProvider({children}){
     let navigate = useNavigate();
 
 
@@ -16,9 +14,8 @@ export function AuthenticationContextProvider({ children }) {
     function saveCurrentUser() {
         console.log('hi save ');
         let token = localStorage.getItem('userToken');
-        let decoded = jwt(token);
+        let decoded = jwtDecode(token);
         setUser(decoded);
-
     }
 
 
@@ -30,9 +27,10 @@ export function AuthenticationContextProvider({ children }) {
     }
     //login section
 
-    return     <AuthContext.Provider value={{ user, setUser, saveCurrentUser, logoutContext }}>
-    {children}
-  </AuthContext.Provider>
 
+
+return <AuthContext.Provider value={{user, setUser, saveCurrentUser, logoutContext}}>
+    {children}
+</AuthContext.Provider>
 
 }

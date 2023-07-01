@@ -13,8 +13,11 @@ import {
 } from "phosphor-react";
 import { useContext } from 'react';
 import { BookContext } from '../Context/DataContext';
+import { AuthContext } from '../Context/AuthenticationContext';
+
 export default function Sidebar() {
-let navigate=useNavigate();
+    let navigate=useNavigate();
+    let {logoutContext}=useContext(AuthContext);
   let {setType}=useContext(BookContext)
 
     return (
@@ -62,7 +65,7 @@ let navigate=useNavigate();
                     <span>Support</span>
                 </div>
                 <div className="icon">
-                    <span>
+                    <span onClick={()=>logoutContext()}>
                         <SignOut size={24} />
                         <span>Logout</span>
 

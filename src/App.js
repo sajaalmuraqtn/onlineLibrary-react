@@ -13,7 +13,7 @@ import Login from './Components/Login/Login';
 import Register from './Components/Register/Register';
 import { useContext, useEffect } from 'react';
 import NotFound from './Components/NotFound/NotFound';
-import { AuthContext, AuthenticationContextProvider } from './Components/Context/AuthenticationContext';
+import { AuthContext, AuthenticationProvider } from './Components/Context/AuthenticationContext';
 import MyList from './Components/MyList/MyList';
 import { DataContextProvider } from './Components/Context/DataContext';
 import BooksLibrary from './Components/BooksLibrary/BooksLibrary';
@@ -21,12 +21,12 @@ import AboutBook from './Components/AboutBook/AboutBook';
 
 function App() {
 
-  // let { saveCurrentUser } = useContext(AuthContext);
+  const { saveCurrentUser } = useContext(AuthContext);
 
   useEffect(
     () => {
       if (localStorage.getItem("userToken")) {
-        // saveCurrentUser();
+        saveCurrentUser();
       }
     }
     , []
@@ -34,11 +34,11 @@ function App() {
   let routs = createBrowserRouter(
     [
       {
-        path: '', element: <Layout />, children:
+        path: '', element:<AuthenticationProvider><Layout /></AuthenticationProvider> , children:
           [
-            { index: true, element: <Home /> },
-            { path: 'login', element: <Login /> },
-            { path: 'register', element: <Register /> },
+            { index: true, element: <AuthenticationProvider><Home /></AuthenticationProvider> },
+            { path: 'login', element: <AuthenticationProvider><Login /> </AuthenticationProvider>},
+            { path: 'register', element: <AuthenticationProvider><Register /></AuthenticationProvider> },
             { path: 'mylist', element: <MyList /> },
             { path: 'bookslibrary', element: <BooksLibrary /> },
             { path: 'aboutBook', element: <AboutBook /> },
@@ -54,10 +54,8 @@ function App() {
     <div className="App">
       <DataContextProvider>
         <RouterProvider router={routs}>
-      <AuthenticationContextProvider>
         
 
-      </AuthenticationContextProvider>
         </RouterProvider>
       </DataContextProvider>
 

@@ -14,7 +14,7 @@ export default function MyList() {
       <h2>My List</h2>
       <div className="row">
         {myLibrary.map((item, index) => (
-          <div className="card col-md-2 mx-3" key={index} >
+          <div className="card col-md-3 mx-3" key={index} >
             <img src={item.volumeInfo.imageLinks?.thumbnail?
             item.volumeInfo.imageLinks.thumbnail:
             defaultImage
@@ -25,7 +25,7 @@ export default function MyList() {
             setAboutBook({ title: item.volumeInfo.title, image:item.volumeInfo.imageLinks.thumbnail, desc: item.volumeInfo.description, page: item.volumeInfo.pageCount, authors: item.volumeInfo.authors });
             navigate('/aboutBook');
           }}>More</span>
-            <button className='btn btn-danger' onClick={() => {
+            <button className='btn btn-danger mt-2' onClick={() => {
               deleteFromList(index);
               navigate('/mylist');
             }}>X</button>
