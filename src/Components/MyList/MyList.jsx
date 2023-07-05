@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import defaultImage from '../../Assets/Image/istockphoto-1270155083-612x612.jpg'
 import '../MyList/MyListStyle.css';
 import { ToastContainer } from 'react-toastify';
+import { Helmet } from 'react-helmet';
 
 export default function MyList() {
   const { setAboutBook, deleteFromList ,myLibrary} = useContext(BookContext);
@@ -11,6 +12,10 @@ export default function MyList() {
 
   return (
     <div className='container'>
+       <Helmet>
+        <meta charSet="utf-8" />
+        <title>onlineLibrary-MyList</title>
+      </Helmet>
       <h2>My List</h2>
       <div className="row">
         { 

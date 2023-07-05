@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { Helmet } from 'react-helmet';
 export default function Register() {
     let [errors,setErrors]=useState([]);
     let [statusError,setStatusError]=useState('');
@@ -44,6 +45,11 @@ export default function Register() {
       }
     return (
         <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>onlineLibrary-Register</title>
+      </Helmet>
+        
             <div className="container row">
                 <div className="col-md-6 pt-3" >
                     <img src={library} alt="library" width={'100%'} />

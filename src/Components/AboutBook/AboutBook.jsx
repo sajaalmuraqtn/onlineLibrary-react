@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import '../AboutBook/AboutBookStyle.css'
 import { Typography } from "antd";
 import { BookContext } from '../Context/DataContext';
+import { Helmet } from 'react-helmet';
 
 
 export default function AboutBook() {
@@ -11,6 +12,10 @@ export default function AboutBook() {
 
     return (
       <div className="AboutBook">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>onlineLibrary-{aboutBook.title}</title>
+      </Helmet>
         <div className="Book">
           <h3 className="title my-3">About the book</h3>
             <img

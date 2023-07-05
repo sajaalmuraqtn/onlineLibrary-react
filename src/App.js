@@ -18,6 +18,7 @@ import { DataContextProvider } from './Components/Context/DataContext';
 import BooksLibrary from './Components/BooksLibrary/BooksLibrary';
 import AboutBook from './Components/AboutBook/AboutBook';
 import jwtDecode from 'jwt-decode';
+import ProtectedRouter from './Components/ProtectedRouter/ProtectedRouter';
 
 function App() {
 
@@ -47,9 +48,9 @@ function App() {
             { index: true, element:<Home user={user}  /> },
             { path: 'login', element: <Login saveCurrentUser={saveCurrentUser} /> },
             { path: 'register', element: <Register /> },
-            { path: 'mylist', element: <MyList /> },
-            { path: 'bookslibrary', element: <BooksLibrary /> },
-            { path: 'aboutBook', element: <AboutBook /> },
+            { path: 'mylist', element: <ProtectedRouter><MyList /></ProtectedRouter>  },
+            { path: 'bookslibrary', element:<ProtectedRouter> <BooksLibrary /> </ProtectedRouter> },
+            { path: 'aboutBook', element:<ProtectedRouter><AboutBook /></ProtectedRouter>   },
             { path: '*', element: <NotFound /> }
           ]
       }

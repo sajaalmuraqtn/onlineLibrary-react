@@ -6,6 +6,7 @@ import { useFormik } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
+import { Helmet } from 'react-helmet';
 export default function Login({saveCurrentUser}) {
   let [errors, setErrors] = useState([]);
   let navigate = useNavigate();
@@ -50,6 +51,10 @@ export default function Login({saveCurrentUser}) {
     }
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>onlineLibrary-Login</title>
+      </Helmet>
       <div className="container row">
         <div className="col-md-6 pt-3" >
           <img src={library} alt="library" width={'100%'} />

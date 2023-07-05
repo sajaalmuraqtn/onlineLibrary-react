@@ -20,7 +20,10 @@ export default function Sidebar({logout}) {
     return (
         <>
             <div className="offcanvas offcanvas-start sidebar d-flex align-items-center flex-column justify-content-start" style={{ width: '40vh' }} tabIndex={-5} id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-                <img src={logo}  style={{ borderRadius: '100px', marginTop: '70px' }} alt="logo" width='100px' height='100px' />
+               <div style={{ marginTop: '70px' }} className='d-flex align-items-center justify-content-center'>
+                <img src={logo}  style={{ borderRadius: '100px'}} alt="logo" width='50px' height='50px' />
+                 <h5 className='text-info mx-3'>Online Library</h5>
+               </div>
 
                
                 <Link to=" "   className="icon mt-5" >

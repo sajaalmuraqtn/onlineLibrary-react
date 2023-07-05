@@ -4,6 +4,7 @@ import BookCard from '../BookCard/BookCard';
 import defaultImage from '../../Assets/Image/istockphoto-1270155083-612x612.jpg'
 import { ToastContainer } from 'react-toastify';
 import Loading from '../Loading/Loading';
+import { Helmet } from 'react-helmet';
 
 export default function BooksLibrary() {
   const { getBookContext } = useContext(BookContext);
@@ -17,6 +18,10 @@ export default function BooksLibrary() {
 
   return (
     <div className='container pt-5'>
+       <Helmet>
+        <meta charSet="utf-8" />
+        <title>onlineLibrary-Books</title>
+      </Helmet>
       {book === [] ?
         <Loading /> :
 <>
