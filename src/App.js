@@ -11,17 +11,25 @@ import Layout from './Components/Layout/Layout';
 import Home from './Components/Home/Home';
 import Login from './Components/Login/Login';
 import Register from './Components/Register/Register';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import NotFound from './Components/NotFound/NotFound';
-import { AuthContext, AuthenticationProvider } from './Components/Context/AuthenticationContext';
 import MyList from './Components/MyList/MyList';
 import { DataContextProvider } from './Components/Context/DataContext';
 import BooksLibrary from './Components/BooksLibrary/BooksLibrary';
 import AboutBook from './Components/AboutBook/AboutBook';
+import jwtDecode from 'jwt-decode';
 
 function App() {
 
-  const { saveCurrentUser } = useContext(AuthContext);
+  // let { setUser } = useContext(AuthContext);
+  let [user, setUser] = useState(null);
+
+  function saveCurrentUser() {
+    console.log('hi save ');
+    let token = localStorage.getItem('userToken');
+    let decoded = jwtDecode(token);
+    setUser(decoded);
+}
 
   useEffect(
     () => {
@@ -34,11 +42,11 @@ function App() {
   let routs = createBrowserRouter(
     [
       {
-        path: '', element:<AuthenticationProvider><Layout /></AuthenticationProvider> , children:
+        path: '', element:<Layout user={user} setUser={setUser} /> , children:
           [
-            { index: true, element: <AuthenticationProvider><Home /></AuthenticationProvider> },
-            { path: 'login', element: <AuthenticationProvider><Login /> </AuthenticationProvider>},
-            { path: 'register', element: <AuthenticationProvider><Register /></AuthenticationProvider> },
+            { index: true, element:<Home user={user}  /> },
+            { path: 'login', element: <Login saveCurrentUser={saveCurrentUser} /> },
+            { path: 'register', element: <Register /> },
             { path: 'mylist', element: <MyList /> },
             { path: 'bookslibrary', element: <BooksLibrary /> },
             { path: 'aboutBook', element: <AboutBook /> },

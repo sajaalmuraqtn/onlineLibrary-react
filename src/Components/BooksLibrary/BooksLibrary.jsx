@@ -3,19 +3,23 @@ import { BookContext } from '../Context/DataContext';
 import BookCard from '../BookCard/BookCard';
 import defaultImage from '../../Assets/Image/istockphoto-1270155083-612x612.jpg'
 import { ToastContainer } from 'react-toastify';
+import Loading from '../Loading/Loading';
 
 export default function BooksLibrary() {
- const {getBookContext}=useContext(BookContext);
- let {type,book}=useContext(BookContext);
+  const { getBookContext } = useContext(BookContext);
+  let { type, book } = useContext(BookContext);
 
 
-    useEffect(()=>{
-      console.log(book);
-        getBookContext(type)
-    },[])
+  useEffect(() => {
+    console.log(book);
+    getBookContext(type)
+  }, [])
 
   return (
     <div className='container pt-5'>
+      {book === [] ?
+        <Loading /> :
+<>
         <h2 >BooksLibrary - {type}</h2>
         <div className='row py-5'>
          {
@@ -34,18 +38,22 @@ export default function BooksLibrary() {
            } 
 
         </div>
-        < ToastContainer
-        position = "top-right"
-        autoClose = { 5000}
-        hideProgressBar = { false}
-        newestOnTop = { false}
+        </>
+
+      }
+
+      < ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
         closeOnClick
-        rtl = { false}
+        rtl={false}
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme = "dark"
-          />
+        theme="dark"
+      />
     </div>
   )
 }

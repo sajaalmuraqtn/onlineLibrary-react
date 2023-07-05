@@ -13,7 +13,20 @@ export default function MyList() {
     <div className='container'>
       <h2>My List</h2>
       <div className="row">
-        {myLibrary.map((item, index) => (
+        { 
+        myLibrary===[]?
+        <div>
+          <h1>
+          your list is empty lets fill it with Books
+
+          </h1>
+          <button className='btn btn-info' onClick={()=>navigate('/bookslibrary')}><i class="fa-duotone fa-book-open fa-flip" style="--fa-primary-color: #6e97dd; --fa-secondary-color: #6e97dd;"></i></button>
+           
+
+        </div>
+        :
+        
+        myLibrary.map((item, index) => (
           <div className="card col-md-3 mx-3" key={index} >
             <img src={item.volumeInfo.imageLinks?.thumbnail?
             item.volumeInfo.imageLinks.thumbnail:

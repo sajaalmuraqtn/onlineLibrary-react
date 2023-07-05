@@ -2,8 +2,7 @@ import React, { useContext, useState } from 'react'
 import library from '../../Assets/Image/libr.jpg'
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../Context/AuthenticationContext';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 export default function Register() {
     let [errors,setErrors]=useState([]);
@@ -77,6 +76,7 @@ export default function Register() {
           {formik.errors.cPassword?<p className="alert alert-danger mt-2">{formik.errors.cPassword}</p>:""}
 
         </div>
+        <p className='my-3'>you have an account lets<a className='mx-2' style={{cursor:'pointer'}} onClick={()=>{navigate('/login')}}>Login</a></p>
         
         <button type="submit" className="btn btn-primary">Register</button>
       </form>

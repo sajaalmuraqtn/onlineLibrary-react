@@ -1,15 +1,17 @@
 import React, { useContext, useEffect } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 import Navbar from '../Navbar/Navbar'
-import { AuthContext } from '../Context/AuthenticationContext'
-import AboutBook from '../AboutBook/AboutBook';
-import { BookContext } from '../Context/DataContext';
 
-export default function Layout() {
-  
+export default function Layout({user,setUser}) {
+  let navigate=useNavigate();
+  function logout() {
+    setUser(null);
+    localStorage.removeItem("userToken");
+    navigate('/login');
+  }
   return (
     <>
-     <Navbar />
+     <Navbar logout={logout} user={user} />
     <Outlet>
       
     </Outlet>

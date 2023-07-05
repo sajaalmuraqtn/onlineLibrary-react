@@ -1,13 +1,11 @@
 import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { AuthContext } from '../Context/AuthenticationContext'
 import Sidebar from '../Sidebar/Sidebar';
 import { List, MagnifyingGlass } from "phosphor-react";
 import '../Navbar/NavBarStyle.css'
 import { BookContext } from '../Context/DataContext';
 
-export default function Navbar(props) {
-  let {user}=useContext(AuthContext);
+export default function Navbar({user,setUser,logout}) {
   let {setType}=useContext(BookContext);
   const {getBookContext}=useContext(BookContext);
 let navigate=useNavigate();
@@ -15,7 +13,7 @@ let navigate=useNavigate();
   return (
     <>
     {
-       user!==null?
+       user?
     <>
 <div className="header container">
 
@@ -45,7 +43,7 @@ let navigate=useNavigate();
     </div>
 
 
-<Sidebar/>
+<Sidebar setUser={setUser} logout={logout}/>
 
 </>
 :''
